@@ -8,22 +8,22 @@ const { validarJWT } = require('../middlewares/validar-jwt');
 const router = Router();
 
 // Crear un nuevo usuario
-router.post( '/new', [
+router.post('/new', [
     check('name', 'El nombre es obligatorio').not().isEmpty(),
     check('email', 'El email es obligatorio').isEmail(),
     check('password', 'La contraseña es obligatoria').isLength({ min: 6 }),
     validarCampos
-], crearUsuario );
+], crearUsuario);
 
 // Login de usuario
-router.post( '/', [
+router.post('/', [
     check('email', 'El email es obligatorio').isEmail(),
     check('password', 'La contraseña es obligatoria').isLength({ min: 6 }),
     validarCampos
-], loginUsuario );
+], loginUsuario);
 
 // Validar y revalidar token
-router.get( '/renew', validarJWT , revalidarToken );
+router.get('/renew', validarJWT, revalidarToken);
 
 
 
